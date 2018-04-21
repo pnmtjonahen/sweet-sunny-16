@@ -4,22 +4,31 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { SunnyApp } from './app.component';
+import { AboutPage} from '../pages/about/about';
+import { TabsPage } from '../pages/tabs/tabs';
+import { NightPage } from '../pages/night/night';
+import { DayPage } from '../pages/day/day';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    SunnyApp,
+    DayPage,
+    AboutPage,
+    TabsPage,
+    NightPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(SunnyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    SunnyApp,
+    DayPage,
+    AboutPage,
+    TabsPage,
+    NightPage
   ],
   providers: [
     StatusBar,

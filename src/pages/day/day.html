@@ -1,8 +1,9 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>
-            Sunny 16 Rule
-        </ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Sunny 16</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -23,11 +24,29 @@
         <ion-icon range-left small color="black" name="iso"></ion-icon>
         <ion-icon range-right color="black" name="iso"></ion-icon>
     </ion-range>
-    <ion-label>Apature : {{apatureValue()}}</ion-label>
-    <ion-range min="0" max="8" step="1" snaps="true" [(ngModel)]="apature" color="black" (ionBlur)="recalcApature($event)">
+    <ion-label>Aperture : {{apertureValue()}}</ion-label>
+    <ion-range min="0" max="8" step="1" snaps="true" [(ngModel)]="aperture" color="black" (ionBlur)="recalcAperture($event)">
         <ion-icon range-left small color="black" name="iso"></ion-icon>
         <ion-icon range-right color="black" name="iso"></ion-icon>
     </ion-range>
     <ion-label>{{message}}</ion-label>
+<ion-list radio-group [(ngModel)]="priority">
+  <ion-item>
+    <ion-label>No priority</ion-label>
+    <ion-radio value="N"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Shutter (SP)</ion-label>
+    <ion-radio value="S"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Aperture (AP)</ion-label>
+    <ion-radio value="A"></ion-radio>
+  </ion-item>
+
+
+</ion-list>    
 </p>
 </ion-content>
