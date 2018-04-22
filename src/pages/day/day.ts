@@ -123,8 +123,8 @@ export class DayPage {
     setMessage(msg: string) {
         let toast = this.toastCtrl.create({
             message: msg,
-            duration: 3000,
-            position: 'middle'
+            duration: 1500,
+            position: 'top'
         });
         toast.present();
     }
