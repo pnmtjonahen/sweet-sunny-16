@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ToastController} from 'ionic-angular';
 
 @Component({
     selector: 'page-day',
@@ -15,7 +16,6 @@ export class DayPage {
     apertureValues = ["f1.4", "f1.7", "f2.8", "f4", "f5.6", "f8", "f11", "f16", "f22"];
     shutterValues = ["1s", "2s", "1/4s", "1/8s", "1/15s", "1/30s", "1/60s", "1/125s", "1/250s", "1/500s", "1/1000s", "1/2000s", "1/4000s"];
     isoValues = ["25", "50", "100", "200", "400", "800", "1600", "3200"];
-    message: string = "";
     priority: string = "N";
 
     sunnySisxteenShutterSpeed = [
@@ -33,7 +33,10 @@ export class DayPage {
         [2, 3, 4, 5, 6, 7, 8, 9],
         [1, 2, 3, 4, 5, 6, 7, 8],
         [0, 1, 2, 3, 4, 5, 6, 7]
-    ]
+    ];
+
+    constructor(private toastCtrl: ToastController) {
+    }
 
     isoValue() {
         return this.isoValues[this.iso];
@@ -53,7 +56,6 @@ export class DayPage {
 
     recalcIso() {
         // iso change reset all values.
-        this.setMessage("");
         this.aperture = 7;
         this.shutter = this.sunnySisxteenShutterSpeed[7][this.iso];
         this.weather = 4;
@@ -61,7 +63,6 @@ export class DayPage {
         this.updateCurrentValues();
     }
     recalcWeather() {
-        this.setMessage("");
         switch (this.priority) {
             case "S":
                 this.recalcShutter();
@@ -79,12 +80,11 @@ export class DayPage {
         }
     }
     recalcShutter() {
-        this.setMessage("");
-        this.priority = "S";
         for (var i = 0; i < this.sunnySisxteenShutterSpeed.length; i++) {
             if (this.sunnySisxteenShutterSpeed[i][this.iso] === this.shutter && (i - this.weatherAdjustment()) <= 8) {
                 // aperture is now in sunny 16 rule, adjust for weather condition
                 // shutter priority
+                this.priority = "S";
                 this.aperture = i - this.weatherAdjustment();
                 this.updateCurrentValues();
                 return;
@@ -94,8 +94,6 @@ export class DayPage {
         this.revertCurrentValues();
     }
     recalcAperture() {
-        this.setMessage("");
-        this.priority = "A";
         // aperture is already adjusted to weather conditions realign to get correct shutterspeed
         const newShutter = this.sunnySisxteenShutterSpeed[this.aperture + this.weatherAdjustment()][this.iso];
         if (newShutter < 0) {
@@ -103,6 +101,7 @@ export class DayPage {
             this.revertCurrentValues();
             return;
         }
+        this.priority = "A";
         this.shutter = newShutter;
         this.updateCurrentValues();
     }
@@ -122,7 +121,12 @@ export class DayPage {
     }
 
     setMessage(msg: string) {
-        this.message = msg;
+        let toast = this.toastCtrl.create({
+            message: msg,
+            duration: 3000,
+            position: 'middle'
+        });
+        toast.present();
     }
 
 }
