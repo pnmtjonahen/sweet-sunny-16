@@ -8,45 +8,41 @@
 </ion-header>
 
 <ion-content padding>
-    <p>
     <ion-label>ISO : {{isoValue()}}</ion-label>
     <ion-range min="0" max="7" step="1" snaps="true" [(ngModel)]="iso" color="black" (ionBlur)="recalcIso()">
-        <ion-icon range-left small color="black" name="iso"></ion-icon>
-        <ion-icon range-right color="black" name="iso"></ion-icon>
+        <ion-icon range-left small color="black" name="film"></ion-icon>
+        <ion-icon range-right color="black" name="film"></ion-icon>
     </ion-range>
     <ion-label>Weather : {{weatherValue()}}</ion-label>
     <ion-range min="0" max="4" step="1" snaps="true" [(ngModel)]="weather" color="black" (ionBlur)="recalcWeather()">
-        <ion-icon range-left small color="black" name="iso"></ion-icon>
-        <ion-icon range-right color="black" name="iso"></ion-icon>
+        <ion-icon range-left small color="black" name="cloud"></ion-icon>
+        <ion-icon range-right color="black" name="sunny"></ion-icon>
     </ion-range>
     <ion-label>Shutter speed : {{shutterValue()}}</ion-label>
-    <ion-range min="0" max="12" step="1" snaps="true" [(ngModel)]="shutter" color="black" (ionBlur)="recalcShutter($event)">
-        <ion-icon range-left small color="black" name="iso"></ion-icon>
-        <ion-icon range-right color="black" name="iso"></ion-icon>
+    <ion-range min="0" max="12" step="1" snaps="true" [(ngModel)]="shutter" color="black" (ionBlur)="recalcShutter()">
+        <ion-icon range-left small color="black" name="speedometer"></ion-icon>
+        <ion-icon range-right color="black" name="speedometer"></ion-icon>
     </ion-range>
     <ion-label>Aperture : {{apertureValue()}}</ion-label>
-    <ion-range min="0" max="8" step="1" snaps="true" [(ngModel)]="aperture" color="black" (ionBlur)="recalcAperture($event)">
-        <ion-icon range-left small color="black" name="iso"></ion-icon>
-        <ion-icon range-right color="black" name="iso"></ion-icon>
+    <ion-range min="0" max="8" step="1" snaps="true" [(ngModel)]="aperture" color="black" (ionBlur)="recalcAperture()">
+        <ion-icon range-left small color="black" name="aperture"></ion-icon>
+        <ion-icon range-right color="black" name="aperture"></ion-icon>
     </ion-range>
     <ion-label>{{message}}</ion-label>
-<ion-list radio-group [(ngModel)]="priority">
-  <ion-item>
-    <ion-label>No priority</ion-label>
-    <ion-radio value="N"></ion-radio>
-  </ion-item>
+    <ion-list radio-group [(ngModel)]="priority">
+              <ion-item>
+            <ion-label>No priority</ion-label>
+            <ion-radio value="N"></ion-radio>
+        </ion-item>
 
-  <ion-item>
-    <ion-label>Shutter (SP)</ion-label>
-    <ion-radio value="S"></ion-radio>
-  </ion-item>
+        <ion-item>
+            <ion-label>Shutter (SP)</ion-label>
+            <ion-radio value="S"></ion-radio>
+        </ion-item>
 
-  <ion-item>
-    <ion-label>Aperture (AP)</ion-label>
-    <ion-radio value="A"></ion-radio>
-  </ion-item>
-
-
-</ion-list>    
-</p>
+        <ion-item>
+            <ion-label>Aperture (AP)</ion-label>
+            <ion-radio value="A"></ion-radio>
+        </ion-item>
+    </ion-list>    
 </ion-content>

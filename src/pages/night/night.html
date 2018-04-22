@@ -9,5 +9,15 @@
 
 
 <ion-content padding>
-    Content coming soon...
+    <ion-label>ISO : {{isoValue()}}</ion-label>
+    <ion-range min="0" max="5" step="1" snaps="true" [(ngModel)]="iso" color="black" (ionBlur)="recalcShutter()">
+        <ion-icon range-left small color="black" name="film"></ion-icon>
+        <ion-icon range-right color="black" name="film"></ion-icon>
+    </ion-range>
+    <ion-label>Aperture : {{apertureValue()}}</ion-label>
+    <ion-range min="0" max="7" step="1" snaps="true" [(ngModel)]="aperture" color="black" (ionBlur)="recalcShutter()">
+        <ion-icon range-left small color="black" name="aperture"></ion-icon>
+        <ion-icon range-right color="black" name="aperture"></ion-icon>
+    </ion-range>
+    <ion-label>Shutter speed : {{shutter}}</ion-label>
 </ion-content>
